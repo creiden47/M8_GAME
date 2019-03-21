@@ -30,6 +30,7 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+        getSupportActionBar().hide();
         references();
     }
 
@@ -41,7 +42,7 @@ public class Login extends AppCompatActivity {
     public void login(View v) throws ClassNotFoundException {
         Button btnLogin = findViewById(R.id.btnLogin);
         btnLogin.setBackgroundResource(R.drawable.button_selected);
-        btnLogin.setTextColor(getResources().getColor(R.color.colorTextLight));
+        btnLogin.setTextColor(getResources().getColor(R.color.colorTextSelected));
         username = EditTextUsername.getText().toString();
         password = EditTextPassword.getText().toString();
         boolean exists = ConnectorSQL.checkUsername(username, password);

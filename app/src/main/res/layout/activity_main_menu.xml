@@ -3,60 +3,111 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_main"
+    android:background="@drawable/background2"
     android:orientation="vertical"
     tools:context=".MainMenu">
-
-    <include layout="@layout/topbar"/>
 
     <TextView
         android:id="@+id/welcome_msg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="126dp"
+        android:fontFamily="@font/main_font"
         android:text="@string/welcome"
         android:textAlignment="center"
-        android:textSize="36sp"
-        android:layout_marginTop="126dp"
         android:textColor="@color/colorAccent"
-        android:fontFamily="@font/main_font"/>
+        android:textSize="36sp" />
 
-    <ImageView
-        android:id="@+id/character_img"
-        android:layout_marginTop="48dp"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/contentDescCharacterImg" />
+        android:layout_marginTop="24dp"
+        android:background="@drawable/card_background"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:fontFamily="@font/main_font"
+            android:text="Ivan"
+            android:textAlignment="center"
+            android:textColor="@color/colorTextLight"
+            android:textSize="18sp" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/damage_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:fontFamily="@font/main_font"
+            android:text="12"
+            android:textColor="@color/colorTextLight"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/dexterity_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:fontFamily="@font/main_font"
+            android:text="10"
+            android:textColor="@color/colorTextLight"
+            android:textSize="18sp" />
+
+        <ImageButton
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="end"
+            android:foregroundGravity="center"
+            android:background="@android:color/transparent"
+            android:src="@drawable/play_icon" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dip"
+        android:layout_marginBottom="24dp"
         android:layout_weight="1"
         android:gravity="center|bottom"
-        android:layout_marginBottom="24dp"
         android:orientation="horizontal">
 
         <Button
             android:layout_width="170dp"
             android:layout_height="60dp"
             android:layout_gravity="bottom"
-            android:background="@drawable/button"
-            android:text="NEW GAME"
-            android:textStyle="italic"
-            android:fontFamily="@font/font_main"
-            android:textColor="@color/colorAccent"
+            android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
+            android:background="@drawable/button"
+            android:fontFamily="@font/font_main"
+            android:text="NEW GAME"
+            android:textColor="@color/colorAccent"
             android:textSize="22sp"
-            android:layout_marginEnd="16dp" />
+            android:textStyle="italic" />
+
         <Button
             android:layout_width="170dp"
             android:layout_height="60dp"
             android:layout_gravity="bottom"
             android:background="@drawable/button_disabled"
-            android:text="STORE"
-            android:textStyle="italic"
             android:fontFamily="@font/font_main"
+            android:text="STORE"
             android:textColor="@color/colorDisabled"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:textStyle="italic" />
     </LinearLayout>
 
 </LinearLayout>
