@@ -7,37 +7,7 @@
     android:orientation="vertical"
     tools:context=".main_menu">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="end"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/lvl"
-            android:gravity="top"
-            android:layout_gravity="top|end"
-            android:layout_margin="16dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/level"
-            android:textAlignment="center"
-            android:textSize="22sp"
-            android:textColor="@color/colorAccent"
-            android:fontFamily="@font/main_font"/>
-        <ProgressBar
-            style="@android:style/Widget.ProgressBar.Horizontal"
-            android:background="@color/colorAccent"
-            android:backgroundTint="@color/colorPrimary"
-            android:progressBackgroundTint="@color/colorPrimary"
-            android:progressTint="@color/colorAccent"
-            android:progress="25"
-            android:layout_gravity="center"
-            android:layout_marginEnd="16dp"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="16dp" />
-    </LinearLayout>
+    <include layout="@layout/topbar"/>
 
     <TextView
         android:id="@+id/welcome_msg"
