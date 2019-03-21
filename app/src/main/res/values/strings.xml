@@ -3,4 +3,10 @@
     <string name="game_name">Wolf Dungeon</string>
     <string name="username_hint">Username</string>
     <string name="password_hint">Password</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome">Welcome</string>
+    <string name="contentDescCharacterImg">TODO</string>
+    <string name="level">level: </string>
 </resources>
