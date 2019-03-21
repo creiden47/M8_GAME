@@ -9,7 +9,7 @@
     android:paddingLeft="32dp"
     android:paddingTop="106dp"
     android:paddingRight="32dp"
-    tools:context=".MainActivity">
+    tools:context=".Login">
 
     <TextView
         android:id="@+id/TextViewGameName"
@@ -54,11 +54,13 @@
         android:orientation="vertical">
 
         <Button
+            android:id="@+id/btnLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:background="@drawable/button"
             android:text="LOGIN"
+            android:onClick="login"
             android:textStyle="italic"
             android:fontFamily="@font/font_main"
             android:textColor="@color/colorAccent"
