@@ -5,15 +5,18 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import android.os.StrictMode;
 
 public class ConnectorSQL {
-    static Connection con;
 
     public static Connection getConnection() throws ClassNotFoundException { //Función para conectar al server
         try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //Driver
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                    .permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+            Class.forName("net.sourceforge.jtds.jdbc.Driver"); //Driver
             //connection Establishment
-            con = DriverManager.getConnection("jdbc:sqlserver://SQLServer-PC:1433;databaseName=WOLF_DUNGEON;user=sa;password=Monlau2019"); //Url
+            Connection con = DriverManager.getConnection("jdbc:jtds:sqlserver://SQLServer-PC:1433;databaseName=WOLF_DUNGEON;user=sa;password=Monlau2019"); //Url
             con.setAutoCommit(false);
             return con; //return con
         } catch (SQLException e) { //If no connection
@@ -22,7 +25,7 @@ public class ConnectorSQL {
     }
 
     public static String insertUser(String username, String password, String salt) throws ClassNotFoundException {
-        con = getConnection(); //Get connection
+        Connection con = getConnection(); //Get connection
         if (con != null) {
             Statement stmt;
             String sql = "INSERT INTO Users (pk_username, password) VALUES "
@@ -43,7 +46,7 @@ public class ConnectorSQL {
     }
 
     public static boolean checkUserExists(String username) throws ClassNotFoundException {
-        con = getConnection(); //Get connection
+        Connection con = getConnection(); //Get connection
         if (con != null) { //If connected
             Statement stmt;
             ResultSet rs;
@@ -69,7 +72,7 @@ public class ConnectorSQL {
     }
 
     public static boolean checkUsername(String username, String password) throws ClassNotFoundException {
-        con = getConnection(); //Get connection
+        Connection con = getConnection(); //Get connection
         if (con != null) { //If connected
             Statement stmt = null;
             ResultSet rs;
@@ -86,9 +89,8 @@ public class ConnectorSQL {
                 }
             } catch (SQLException e) {  //Sql error
             }
-        } else { //If no connection
-        }
-        return false;
+        } return false;
+
     }
 
 

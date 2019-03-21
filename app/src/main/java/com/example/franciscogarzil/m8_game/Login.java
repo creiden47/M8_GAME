@@ -2,29 +2,24 @@ package com.example.franciscogarzil.m8_game;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.sql.SQLOutput;
 import java.util.Timer;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.TimerTask;
 
 
-public class MainActivity extends AppCompatActivity {
+public class Login extends AppCompatActivity {
     String username = "";
     String password = "";
     String exp = "";
     String lvl = "";
     static int number = 0;
     private Timer timer;
-    private MyTimerTask task;
+    //private MyTimerTask task;
     private Context context;
     private int counter = 25;
     private int interval = 10;
@@ -34,16 +29,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.login);
         references();
-        //db connection
-        try {
-            ConnectorSQL.getConnection();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        mission1();
     }
 
     private void references(){
@@ -52,21 +39,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void login(View v) throws ClassNotFoundException {
+        Button btnLogin = findViewById(R.id.btnLogin);
+        btnLogin.setBackgroundResource(R.drawable.button_selected);
+        btnLogin.setTextColor(getResources().getColor(R.color.colorTextLight));
         username = EditTextUsername.getText().toString();
         password = EditTextPassword.getText().toString();
-        Boolean exists = ConnectorSQL.checkUsername(username, password);
-        if(exists = true){
-            msToast("Login correcto");
-            Intent myIntent = new Intent(MainActivity.this, main_menu.class);
-            MainActivity.this.startActivity(myIntent);
-        }
+        boolean exists = ConnectorSQL.checkUsername(username, password);
 
-        if(exists = false){
+        if(exists == true){
+            msToast("Login correcto");
+            Intent myIntent = new Intent(Login.this, MainMenu.class);
+            Login.this.startActivity(myIntent);
+        }else {
             msToast("Credenciales incorrectas.");
         }
     }
 
-    private void dbConnection() throws SQLException, ClassNotFoundException {
+    /*private void dbConnection() throws SQLException, ClassNotFoundException {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sonoo", "root", "root");
@@ -169,11 +158,12 @@ public class MainActivity extends AppCompatActivity {
         public void run() {
             handler.post(new Runnable() {
                 public void run() {
-                    ((MainActivity) context).taskTimer();
+                    ((Login) context).taskTimer();
                 }
             });
         }
-    }
+
+    }*/
 
     public void msToast(String text) {
         Context context = getApplicationContext();
