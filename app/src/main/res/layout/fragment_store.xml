@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fragment_store_bg"
+    android:background="@drawable/background_main"
     tools:context=".storeFragment">
 
     <TextView
@@ -18,211 +18,353 @@
         android:textSize="24sp"
         android:textStyle="italic" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_below="@+id/store_title"
-        android:layout_centerHorizontal="true"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/itemListType"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/main_font"
-            android:textColor="@color/colorTextLight"
-            android:padding="8dp"
-            android:textSize="18sp"
-            android:text="@string/item_type"/>
+        android:layout_centerHorizontal="true">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:background="@drawable/card_background"
-                android:gravity="center"
-                android:paddingTop="24dp"
-                android:paddingBottom="24dp">
+            <TextView
+                android:id="@+id/itemListType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/main_font"
+                android:padding="8dp"
+                android:text="@string/item_type"
+                android:textColor="@color/colorTextLight"
+                android:textSize="18sp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/main_font"
-                    android:text="@string/item_name"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorTextLight"
-                    android:textSize="18sp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:contentDescription="@string/contentDescCharacterImg"
-                    android:src="@drawable/ic_launcher_background" />
+                <RelativeLayout
+                    android:layout_width="200dp"
+                    android:layout_height="250dp"
+                    android:background="@drawable/card_background"
+                    android:gravity="center"
+                    android:paddingTop="24dp"
+                    android:paddingBottom="24dp">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:fontFamily="@font/main_font"
-                    android:text="@string/item_price"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorTextLight"
-                    android:textSize="18sp" />
-            </RelativeLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/main_font"
+                        android:text="@string/item_name"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorTextLight"
+                        android:textSize="18sp" />
 
-            <RelativeLayout
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:background="@drawable/card_background"
-                android:gravity="center"
-                android:paddingTop="24dp"
-                android:paddingBottom="24dp">
+                    <ImageView
+                        android:id="@+id/item_image"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:contentDescription="@string/contentDescCharacterImg"
+                        android:src="@drawable/ic_launcher_background" />
+                    
+                    <LinearLayout
+                        android:layout_below="@id/item_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_centerHorizontal="true"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/damage_icon"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/main_font"
+                            android:textColor="@color/colorTextLight"
+                            android:textSize="14sp"
+                            android:text="12"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginRight="8dp" />
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/dexterity_icon"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/main_font"
+                            android:textColor="@color/colorTextLight"
+                            android:textSize="14sp"
+                            android:text="0"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginRight="8dp" />
+                    </LinearLayout>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/main_font"
-                    android:text="@string/item_name"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorTextLight"
-                    android:textSize="18sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:fontFamily="@font/main_font"
+                        android:text="@string/item_price"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorTextLight"
+                        android:textSize="18sp" />
+                </RelativeLayout>
 
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:contentDescription="@string/contentDescCharacterImg"
-                    android:src="@drawable/ic_launcher_background" />
+                <RelativeLayout
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:background="@drawable/card_background"
+                    android:gravity="center"
+                    android:paddingTop="24dp"
+                    android:paddingBottom="24dp">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:fontFamily="@font/main_font"
-                    android:text="@string/item_price"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorTextLight"
-                    android:textSize="18sp" />
-            </RelativeLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/main_font"
+                        android:text="@string/item_name"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorTextLight"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:contentDescription="@string/contentDescCharacterImg"
+                        android:src="@drawable/ic_launcher_background" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:fontFamily="@font/main_font"
+                        android:text="@string/item_price"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorTextLight"
+                        android:textSize="18sp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/main_font"
+                android:padding="8dp"
+                android:text="Armors"
+                android:textColor="@color/colorTextLight"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="200dp"
+                    android:layout_height="250dp"
+                    android:background="@drawable/card_background"
+                    android:gravity="center"
+                    android:paddingTop="24dp"
+                    android:paddingBottom="24dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/main_font"
+                        android:text="Rusty Set"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorTextLight"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:id="@+id/item_image2"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:contentDescription="@string/contentDescCharacterImg"
+                        android:src="@drawable/ic_launcher_background" />
+                    <LinearLayout
+                        android:layout_below="@id/item_image2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_centerHorizontal="true"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/vitality_icon"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/main_font"
+                            android:textColor="@color/colorTextLight"
+                            android:textSize="14sp"
+                            android:text="5"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginRight="8dp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:fontFamily="@font/main_font"
+                        android:text="@string/item_price"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorTextLight"
+                        android:textSize="18sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:background="@drawable/card_background"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:paddingTop="24dp"
+                    android:paddingBottom="24dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/main_font"
+                        android:text="Leather Bracelet"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorTextLight"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:contentDescription="@string/contentDescCharacterImg"
+                        android:src="@drawable/ic_launcher_background" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:fontFamily="@font/main_font"
+                        android:text="@string/item_price"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorTextLight"
+                        android:textSize="18sp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:background="@drawable/card_background"
+                    android:gravity="center"
+                    android:paddingTop="24dp"
+                    android:paddingBottom="24dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/main_font"
+                        android:text="@string/item_name"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorTextLight"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:contentDescription="@string/contentDescCharacterImg"
+                        android:src="@drawable/ic_launcher_background" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:fontFamily="@font/main_font"
+                        android:text="@string/item_price"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorTextLight"
+                        android:textSize="18sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:background="@drawable/card_background"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:paddingTop="24dp"
+                    android:paddingBottom="24dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/main_font"
+                        android:text="@string/item_name"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorTextLight"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:contentDescription="@string/contentDescCharacterImg"
+                        android:src="@drawable/ic_launcher_background" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:fontFamily="@font/main_font"
+                        android:text="@string/item_price"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorTextLight"
+                        android:textSize="18sp" />
+                </RelativeLayout>
+            </LinearLayout>
         </LinearLayout>
+    </ScrollView>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/main_font"
-            android:textColor="@color/colorTextLight"
-            android:padding="8dp"
-            android:textSize="18sp"
-            android:text="Armors"/>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RelativeLayout
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:background="@drawable/card_background"
-                android:gravity="center"
-                android:paddingTop="24dp"
-                android:paddingBottom="24dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/main_font"
-                    android:text="@string/item_name"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorTextLight"
-                    android:textSize="18sp" />
-
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:contentDescription="@string/contentDescCharacterImg"
-                    android:src="@drawable/ic_launcher_background" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:fontFamily="@font/main_font"
-                    android:text="@string/item_price"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorTextLight"
-                    android:textSize="18sp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:clickable="true"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:background="@drawable/card_background"
-                android:gravity="center"
-                android:paddingTop="24dp"
-                android:paddingBottom="24dp"
-                android:focusable="true">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/main_font"
-                    android:text="@string/item_name"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorTextLight"
-                    android:textSize="18sp" />
-
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:contentDescription="@string/contentDescCharacterImg"
-                    android:src="@drawable/ic_launcher_background" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:fontFamily="@font/main_font"
-                    android:text="@string/item_price"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorTextLight"
-                    android:textSize="18sp" />
-            </RelativeLayout>
-        </LinearLayout>
-    </LinearLayout>
 
     <LinearLayout
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:orientation="horizontal">
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="0.3"
+            android:background="@drawable/button"
+            android:contentDescription="TODO"
+            android:src="@drawable/arrow_back" />
 
         <Button
             android:layout_width="0dp"
-            android:layout_weight="0.5"
             android:layout_height="60dp"
-            android:background="@drawable/arrow_back"
-            android:textStyle="italic"
-            android:fontFamily="@font/font_main"
-            android:textColor="@color/colorAccent"
-            android:textSize="22sp" />
-        <Button
-            android:layout_width="0dp"
             android:layout_weight="1.5"
-            android:layout_height="60dp"
             android:background="@drawable/button"
-            android:text="BUY"
-            android:textStyle="italic"
             android:fontFamily="@font/font_main"
+            android:text="BUY"
             android:textColor="@color/colorAccent"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:textStyle="italic" />
     </LinearLayout>
 
 </RelativeLayout>
