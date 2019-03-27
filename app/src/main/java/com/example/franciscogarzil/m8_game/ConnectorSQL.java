@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+
 import android.os.StrictMode;
 
 public class ConnectorSQL {
@@ -36,7 +38,7 @@ public class ConnectorSQL {
 
                 con.commit(); //Commit
                 con.close(); //Close connection
-                return username +  "registered";
+                return username +  " registered";
             } catch (SQLException e) { //Error sql
                 return "SQL Error while inserting new user: " + username + ".";
             }
@@ -90,8 +92,52 @@ public class ConnectorSQL {
             } catch (SQLException e) {  //Sql error
             }
         } return false;
-
     }
 
+    public static String insertNewCharacter(String name, String username) throws ClassNotFoundException {
+        Connection con = getConnection(); //Get connection
+        if (con != null) {
+            Statement stmt;
+            String sql = "INSERT INTO Characters (pk_name, fk_username) VALUES "
+                    + "('" + name + "','" + username + "')";
+            try {
+                stmt = con.createStatement();
+                stmt.executeUpdate(sql); //Do insert
 
+                con.commit(); //Commit
+                con.close(); //Close connection
+                return name +  " created";
+            } catch (SQLException e) { //Error sql
+                return "SQL Error while inserting new user: " + username + ".";
+            }
+        } else {
+            return "Can't establish server connection.";
+        }
+    }
+
+    public static ArrayList<Character> getListCharacters(String username) throws ClassNotFoundException {
+        Connection con = getConnection(); //Get connection
+        ArrayList<Character> al = new ArrayList<Character>();
+        if (con != null) { //If connected
+            Statement stmt = null;
+            ResultSet rs;
+            String sqlSelect = "SELECT * FROM Characters WHERE fk_username = '" + username + "';";
+            try {
+                stmt = con.createStatement();
+                rs = stmt.executeQuery(sqlSelect);
+                while(rs.next()) {
+                    Character c = new Character(rs.getString(1), rs.getString(2), rs.getInt(3),
+                            rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getDate(7));
+                    al.add(c);
+                }
+            return al;
+            } catch (SQLException e) { //Sql error
+            }
+        }
+        return null;
+    }
+
+    public static void incrementStat(String stat){
+        
+    }
 }
