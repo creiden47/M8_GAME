@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background2"
+    tools:context=".skillsFragment">
+    <TextView
+        android:id="@+id/skills_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1D1D1D"
+        android:fontFamily="@font/main_font"
+        android:padding="16dp"
+        android:text="@string/fragment_skills_title"
+        android:textColor="@color/colorTextLight"
+        android:textSize="24sp"
+        android:textStyle="italic" />
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scrollbars="vertical">
+
+        <HorizontalScrollView
+            android:layout_width="320dp"
+            android:layout_height="wrap_content">
+
+            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/linlay" android:layout_width="320px"
+                android:layout_height="fill_parent" android:stretchColumns="1"
+                android:background="#000000"/>
+
+        </HorizontalScrollView>
+
+    </ScrollView>
+
+</RelativeLayout>

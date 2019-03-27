@@ -3,60 +3,75 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_main"
+    android:background="@drawable/background2"
     android:orientation="vertical"
+    android:padding="16dp"
     tools:context=".MainMenu">
-
-    <include layout="@layout/topbar"/>
 
     <TextView
         android:id="@+id/welcome_msg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/welcome"
+        android:layout_marginTop="106dp"
+        android:fontFamily="@font/main_font"
+        android:text="@string/game_name"
         android:textAlignment="center"
-        android:textSize="36sp"
-        android:layout_marginTop="126dp"
         android:textColor="@color/colorAccent"
-        android:fontFamily="@font/main_font"/>
+        android:textSize="36sp" />
 
-    <ImageView
-        android:id="@+id/character_img"
-        android:layout_marginTop="48dp"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/contentDescCharacterImg" />
+        android:layout_marginTop="64dp"
+        android:background="@drawable/card_background">
+
+
+        <TextView
+            android:id="@+id/char_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:fontFamily="@font/main_font"
+            android:text="Ivan"
+            android:textAlignment="center"
+            android:textColor="@color/colorTextLight"
+            android:textSize="18sp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"/>
+
+        <ImageButton
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="end"
+            android:foregroundGravity="center"
+            android:background="#0F0F0F"
+            android:layout_margin="2dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/play_icon"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dip"
         android:layout_weight="1"
         android:gravity="center|bottom"
-        android:layout_marginBottom="24dp"
         android:orientation="horizontal">
 
         <Button
-            android:layout_width="170dp"
+            android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_gravity="bottom"
-            android:background="@drawable/button"
-            android:text="NEW GAME"
-            android:textStyle="italic"
-            android:fontFamily="@font/font_main"
-            android:textColor="@color/colorAccent"
+            android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
-            android:textSize="22sp"
-            android:layout_marginEnd="16dp" />
-        <Button
-            android:layout_width="170dp"
-            android:layout_height="60dp"
-            android:layout_gravity="bottom"
-            android:background="@drawable/button_disabled"
-            android:text="STORE"
-            android:textStyle="italic"
+            android:background="@drawable/button"
             android:fontFamily="@font/font_main"
-            android:textColor="@color/colorDisabled"
-            android:textSize="22sp" />
+            android:text="NEW CHARACTER"
+            android:textColor="@color/colorAccent"
+            android:textSize="22sp"
+            android:textStyle="italic" />
     </LinearLayout>
 
 </LinearLayout>
