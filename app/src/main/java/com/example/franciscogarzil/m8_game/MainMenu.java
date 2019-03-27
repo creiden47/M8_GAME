@@ -8,10 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+
+import java.util.ArrayList;
 
 import androidx.navigation.Navigation;
 
 public class MainMenu extends Fragment implements View.OnClickListener {
+    LinearLayout lt1;
 
     public MainMenu() {
         // Required empty public constructor
@@ -35,12 +39,28 @@ public class MainMenu extends Fragment implements View.OnClickListener {
         return v;
     }
 
+    private void references(View v){
+        lt1 = (LinearLayout) v.findViewById(R.id.parent_list);
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.createCharacterBtn:
 
                 break;
+        }
+    }
+
+    public void characters(View v) throws ClassNotFoundException {
+        LinearLayout Llayout = (LinearLayout) v.findViewById(R.id.parent_list);
+        Button createCharacterBtn = (Button) v.findViewById(R.id.createCharacterBtn);
+        ArrayList<Character> character = ConnectorSQL.getListCharacters("Bernat");
+        for(int i = 0; i == character.size(); i++){
+            Button btn = createCharacterBtn;
+            Llayout.addView(btn);
+            btn.setText(character.get(i).get_name());
+
         }
     }
 }
