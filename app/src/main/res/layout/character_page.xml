@@ -5,20 +5,10 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_main"
     android:orientation="vertical"
-    tools:context=".MainMenu">
+    tools:context=".CharacterPage">
 
     <include layout="@layout/topbar"/>
 
-    <TextView
-        android:id="@+id/welcome_msg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/welcome"
-        android:textAlignment="center"
-        android:textSize="36sp"
-        android:layout_marginTop="126dp"
-        android:textColor="@color/colorAccent"
-        android:fontFamily="@font/main_font"/>
 
     <ImageView
         android:id="@+id/character_img"
@@ -52,7 +42,7 @@
             android:layout_height="60dp"
             android:layout_gravity="bottom"
             android:background="@drawable/button_disabled"
-            android:text="STORE"
+            android:text="LIBRARY"
             android:textStyle="italic"
             android:fontFamily="@font/font_main"
             android:textColor="@color/colorDisabled"
