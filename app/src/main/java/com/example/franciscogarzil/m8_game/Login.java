@@ -53,6 +53,8 @@ public class Login extends AppCompatActivity {
             Login.this.startActivity(myIntent);
         }else {
             msToast("Credenciales incorrectas.");
+            btnLogin.setBackgroundResource(R.drawable.button);
+            btnLogin.setTextColor(getResources().getColor(R.color.colorTextLight));
         }
     }
 

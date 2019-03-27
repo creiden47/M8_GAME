@@ -9,5 +9,27 @@
         android:id="@+id/storeFragment2"
         android:name="com.example.franciscogarzil.m8_game.storeFragment"
         android:label="fragment_store"
-        tools:layout="@layout/fragment_store" />
+        tools:layout="@layout/fragment_store" >
+        <action
+            android:id="@+id/action_storeFragment2_to_characterPage"
+            app:destination="@id/characterPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainMenu"
+        android:name="com.example.franciscogarzil.m8_game.MainMenu"
+        android:label="main_menu"
+        tools:layout="@layout/main_menu" >
+        <action
+            android:id="@+id/action_mainMenu_to_characterPage"
+            app:destination="@id/characterPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/characterPage"
+        android:name="com.example.franciscogarzil.m8_game.CharacterPage"
+        android:label="character_page"
+        tools:layout="@layout/character_page" >
+        <action
+            android:id="@+id/action_characterPage_to_storeFragment2"
+            app:destination="@id/storeFragment2" />
+    </fragment>
 </navigation>
