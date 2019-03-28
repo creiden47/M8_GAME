@@ -12,7 +12,7 @@
     <string name="money">Mastery Points:</string>
     <string name="store">STORE</string>
     <string name="skills">skills</string>
-    <string name="store_title">Buy Something</string>
+    <string name="store_title">Increment Stats</string>
     <string name="item_name">Sword</string>
     <string name="item_price">200</string>
     <string name="item_type">Weapons</string>

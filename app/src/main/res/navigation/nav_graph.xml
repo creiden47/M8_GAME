@@ -15,15 +15,6 @@
             app:destination="@id/characterPage" />
     </fragment>
     <fragment
-        android:id="@+id/mainMenu"
-        android:name="com.example.franciscogarzil.m8_game.MainMenu"
-        android:label="main_menu"
-        tools:layout="@layout/main_menu" >
-        <action
-            android:id="@+id/action_mainMenu_to_characterPage"
-            app:destination="@id/characterPage" />
-    </fragment>
-    <fragment
         android:id="@+id/characterPage"
         android:name="com.example.franciscogarzil.m8_game.CharacterPage"
         android:label="character_page"
