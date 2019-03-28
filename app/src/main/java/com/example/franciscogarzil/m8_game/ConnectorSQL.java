@@ -19,7 +19,7 @@ public class ConnectorSQL {
             Class.forName("net.sourceforge.jtds.jdbc.Driver"); //Driver
             //connection Establishment
             Connection con = DriverManager.getConnection("jdbc:jtds:sqlserver://SQLServer-PC:1433;databaseName=WOLF_DUNGEON;user=sa;password=Monlau2019"); //Url
-            con.setAutoCommit(false);
+            con.setAutoCommit(true);
             return con; //return con
         } catch (SQLException e) { //If no connection
             return null; //return null
@@ -137,7 +137,23 @@ public class ConnectorSQL {
         return null;
     }
 
-    public static void incrementStat(String stat){
-        
+    public static String incrementStat(String stat, String nameCharacter) throws ClassNotFoundException{
+        Connection con = getConnection(); //Get connection
+        if (con != null) { //If connected
+            Statement stmt = null;
+            String sqlUpdate = "UPDATE Characters" +
+                    "set " + stat + " = " +
+                    "(Select " + stat + "from Characters where pk_name = 'Bernomvi') + 1" +
+                    "WHERE pk_name = 'Bernomvi';";
+            try {
+                stmt = con.createStatement();
+                stmt.executeUpdate(sqlUpdate);
+                con.commit();
+                return "Updated";
+            } catch (SQLException e) { //Sql error
+                return e.getMessage();
+            }
+        }
+        return "No connection xd";
     }
 }
