@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainMenu"></activity>
+        <activity android:name=".CharacterPage"></activity>
     </application>
 
 </manifest>

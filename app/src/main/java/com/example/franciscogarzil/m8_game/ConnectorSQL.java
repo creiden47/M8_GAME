@@ -19,7 +19,7 @@ public class ConnectorSQL {
             Class.forName("net.sourceforge.jtds.jdbc.Driver"); //Driver
             //connection Establishment
             Connection con = DriverManager.getConnection("jdbc:jtds:sqlserver://SQLServer-PC:1433;databaseName=WOLF_DUNGEON;user=sa;password=Monlau2019"); //Url
-            con.setAutoCommit(false);
+            con.setAutoCommit(true);
             return con; //return con
         } catch (SQLException e) { //If no connection
             return null; //return null
@@ -73,7 +73,7 @@ public class ConnectorSQL {
         }
     }
 
-    public static boolean checkUsername(String username, String password) throws ClassNotFoundException {
+    public static String checkUsername(String username, String password) throws ClassNotFoundException {
         Connection con = getConnection(); //Get connection
         if (con != null) { //If connected
             Statement stmt = null;
@@ -85,13 +85,16 @@ public class ConnectorSQL {
                 rs.next();
                 int rowCount = rs.getInt(1);
                 if (rowCount > 0) { //Correct
-                    return true;
+                    return "1";
                 } else { //Incorrect
-                    return false;
+                    return "0";
                 }
             } catch (SQLException e) {  //Sql error
+                return "Sql Error";
             }
-        } return false;
+        } else {
+            return "Can't connect to the server";
+        }
     }
 
     public static String insertNewCharacter(String name, String username) throws ClassNotFoundException {
@@ -137,7 +140,46 @@ public class ConnectorSQL {
         return null;
     }
 
-    public static void incrementStat(String stat){
-        
+    public static Character getCharacter(String nameCharacter) throws ClassNotFoundException {
+        Connection con = getConnection(); //Get connection
+        ArrayList<Character> al = new ArrayList<Character>();
+        if (con != null) { //If connected
+            Statement stmt = null;
+            ResultSet rs;
+            String sqlSelect = "SELECT * FROM Characters WHERE pk_name = '" + nameCharacter + "';";
+            try {
+                stmt = con.createStatement();
+                rs = stmt.executeQuery(sqlSelect);
+                rs.next();
+                Character c = new Character(rs.getString(1), rs.getString(2), rs.getInt(3),
+                        rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getDate(7));
+                return c;
+            } catch (SQLException e) { //Sql error
+                return null;
+            }
+        }
+        return null;
+    }
+
+    public static String incrementStat(String stat, String nameCharacter) throws ClassNotFoundException{
+        Connection con = getConnection(); //Get connection
+        if (con != null) { //If connected
+            Statement stmt = null;
+            String sqlUpdate = "UPDATE Characters" +
+                    "set " + stat + " = " +
+                    "(Select " + stat + "from Characters where pk_name = " + nameCharacter + ") + 1" +
+                    "WHERE pk_name = " + nameCharacter + ";";
+            try {
+                stmt = con.createStatement();
+                stmt.executeUpdate(sqlUpdate);
+                con.commit();
+                return nameCharacter + "incremented his stats";
+            } catch (SQLException e) { //Sql error
+                return e.getMessage();
+            }
+        }else {
+            return "Can't connect to the server";
+        }
+
     }
 }
