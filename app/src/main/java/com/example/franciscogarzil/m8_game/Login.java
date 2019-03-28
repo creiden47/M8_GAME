@@ -44,17 +44,19 @@ public class Login extends AppCompatActivity {
         btnLogin.setTextColor(getResources().getColor(R.color.colorTextSelected));
         username = EditTextUsername.getText().toString();
         password = EditTextPassword.getText().toString();
-        boolean exists = ConnectorSQL.checkUsername(username, password);
+        String exists = ConnectorSQL.checkUsername(username, password);
 
-        if(exists == true){
+        if(exists == "1"){
             msToast("Login correcto");
             Intent myIntent = new Intent(Login.this, MainMenu.class);
             currentUserName = username;
             Login.this.startActivity(myIntent);
-        }else {
+        }else if (exists == "0"){
             msToast("Credenciales incorrectas.");
             btnLogin.setBackgroundResource(R.drawable.button);
             btnLogin.setTextColor(getResources().getColor(R.color.colorTextLight));
+        } else {
+            msToast(exists);
         }
     }
 
