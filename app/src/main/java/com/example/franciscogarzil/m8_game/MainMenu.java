@@ -1,7 +1,10 @@
 package com.example.franciscogarzil.m8_game;
 
+import android.app.FragmentManager;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.Image;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
@@ -19,10 +22,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.view.ViewGroup.LayoutParams;
 import android.view.ViewGroup.MarginLayoutParams;
+
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class MainMenu extends AppCompatActivity {
-    
+    public static Character currentCharacter;
+    private ArrayList<TextView> arrayListTv = new ArrayList<TextView>();
+    private ArrayList<ImageButton> arrayListButtons = new ArrayList<ImageButton>();
+    private ArrayList<Character> character;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,7 +51,15 @@ public class MainMenu extends AppCompatActivity {
 
         Button createCharacterBtn = (Button) findViewById(R.id.createCharacterBtn);
 
-        ArrayList<Character> character = ConnectorSQL.getListCharacters("Bernat");
+        character = ConnectorSQL.getListCharacters(Login.currentUserName);
+        for (int i = 0; i < character.size(); i++) {
+            TextView tv = new TextView(this);
+            ImageButton btn = new ImageButton(this);
+            btn.setId(i);
+            arrayListTv.add(tv);
+            arrayListButtons.add(btn);
+        }
+
         for(int i = 0; i < character.size(); i++){
             RelativeLayout relLayout = new RelativeLayout(this);
             Llayout.addView(relLayout);
@@ -64,37 +81,37 @@ public class MainMenu extends AppCompatActivity {
                 relLayout.setLayoutParams(rel_marginLayoutParams);
             }
 
-            TextView tv = new TextView(this);
-            relLayout.addView(tv);
-            tv.setTextColor(getResources().getColor(R.color.colorTextLight)); //TextColor
-            tv.setTextSize(18); //TextSize
-            tv.setText(character.get(i).get_name()); //Text
-            tv.setPadding(15, 0,0,0);
 
-            LayoutParams tv_params = (LayoutParams) tv.getLayoutParams();
+
+            relLayout.addView(arrayListTv.get(i));
+            arrayListTv.get(i).setTextColor(getResources().getColor(R.color.colorTextLight)); //TextColor
+            arrayListTv.get(i).setTextSize(18); //TextSize
+            arrayListTv.get(i).setText(character.get(i).get_name()); //Text
+            arrayListTv.get(i).setPadding(15, 0,0,0);
+
+            LayoutParams tv_params = (LayoutParams) arrayListTv.get(i).getLayoutParams();
             tv_params.width = LayoutParams.WRAP_CONTENT; //Width
             tv_params.height = LayoutParams.WRAP_CONTENT; //Height
 
-            MarginLayoutParams tv_marginLayoutParams = (MarginLayoutParams) tv.getLayoutParams();
+            MarginLayoutParams tv_marginLayoutParams = (MarginLayoutParams) arrayListTv.get(i).getLayoutParams();
             tv_marginLayoutParams.setMargins(16,0,0,0); //Margins
 
-            RelativeLayout.LayoutParams tv_relLayoutParams =(RelativeLayout.LayoutParams)tv.getLayoutParams();
+            RelativeLayout.LayoutParams tv_relLayoutParams =(RelativeLayout.LayoutParams)arrayListTv.get(i).getLayoutParams();
             tv_relLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT,RelativeLayout.ALIGN_PARENT_START);
             tv_relLayoutParams.addRule(RelativeLayout.CENTER_VERTICAL);
             tv_relLayoutParams.addRule(RelativeLayout.TEXT_ALIGNMENT_CENTER);
 
-            tv.setLayoutParams(tv_params);
-            tv.setLayoutParams(tv_marginLayoutParams);
-            tv.setLayoutParams(tv_relLayoutParams);
+            arrayListTv.get(i).setLayoutParams(tv_params);
+            arrayListTv.get(i).setLayoutParams(tv_marginLayoutParams);
+            arrayListTv.get(i).setLayoutParams(tv_relLayoutParams);
 
 
-            ImageButton btn = new ImageButton(this);
-            relLayout.addView(btn);
-            btn.setImageResource(R.drawable.play_icon);
-            btn.setBackgroundColor(Color.parseColor("#0F0F0F"));
-            btn.setPadding(15, 15,15,15);
+            relLayout.addView(arrayListButtons.get(i));
+            arrayListButtons.get(i).setImageResource(R.drawable.play_icon);
+            arrayListButtons.get(i).setBackgroundColor(Color.parseColor("#0F0F0F"));
+            arrayListButtons.get(i).setPadding(15, 15,15,15);
 
-            LayoutParams btn_params = btn.getLayoutParams();
+            LayoutParams btn_params = arrayListButtons.get(i).getLayoutParams();
             btn_params.width = 90; //Width
             btn_params.height = 90; //Height
 
@@ -102,19 +119,28 @@ public class MainMenu extends AppCompatActivity {
                     LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
             btn_gravityParams.gravity = Gravity.END;
 
-            MarginLayoutParams btn_marginLayoutParams = (MarginLayoutParams) tv.getLayoutParams();
+            MarginLayoutParams btn_marginLayoutParams = (MarginLayoutParams) arrayListButtons.get(i).getLayoutParams();
             btn_marginLayoutParams.setMargins(5,5,5,5); //Margins
 
-            RelativeLayout.LayoutParams btn_LayoutParams =(RelativeLayout.LayoutParams)btn.getLayoutParams();
+            RelativeLayout.LayoutParams btn_LayoutParams =(RelativeLayout.LayoutParams)arrayListButtons.get(i).getLayoutParams();
             btn_LayoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT,RelativeLayout.ALIGN_PARENT_END);
 
-            btn.setLayoutParams(btn_params);
-            btn.setLayoutParams(btn_gravityParams);
-            btn.setLayoutParams(btn_marginLayoutParams);
-            btn.setLayoutParams(btn_LayoutParams);
-            btn.setOnClickListener(new View.OnClickListener() {
+            arrayListButtons.get(i).setLayoutParams(btn_params);
+            arrayListButtons.get(i).setLayoutParams(btn_gravityParams);
+            arrayListButtons.get(i).setLayoutParams(btn_marginLayoutParams);
+            arrayListButtons.get(i).setLayoutParams(btn_LayoutParams);
+
+            arrayListButtons.get(i).setOnClickListener(new View.OnClickListener() {
                 public void onClick(View arg0) {
-                    //Navigation.createNavigateOnClickListener(R.id.characterPage, null)
+                    ImageButton b = (ImageButton)arg0;
+                    for (int i = 0; i < arrayListButtons.size(); i++){
+                        if (i == b.getId()){
+                            currentCharacter = character.get(i);
+                            Intent myIntent = new Intent(MainMenu.this, CharacterPage.class);
+                            MainMenu.this.startActivity(myIntent);
+                        }
+                    }
+
                 }
             });
 

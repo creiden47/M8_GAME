@@ -143,8 +143,8 @@ public class ConnectorSQL {
             Statement stmt = null;
             String sqlUpdate = "UPDATE Characters" +
                     "set " + stat + " = " +
-                    "(Select " + stat + "from Characters where pk_name = 'Bernomvi') + 1" +
-                    "WHERE pk_name = 'Bernomvi';";
+                    "(Select " + stat + "from Characters where pk_name = " + nameCharacter + ") + 1" +
+                    "WHERE pk_name = " + nameCharacter + ";";
             try {
                 stmt = con.createStatement();
                 stmt.executeUpdate(sqlUpdate);
