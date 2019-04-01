@@ -26,9 +26,9 @@ class StatusInit {
         String _mpPlaceholder = _activity.getResources().getString(R.string.money) + " " + currentCharacter.get_masteryPoints();
         // Set Texts
         _masteryPoints.setText(_mpPlaceholder);
-        _dmgStatus.setText(currentCharacter.get_powerStat());
-        _speedStatus.setText(currentCharacter.get_asStat());
-        _vitalityStatus.setText(currentCharacter.get_hpStat());
+        _dmgStatus.setText("" + currentCharacter.get_powerStat());
+        _speedStatus.setText("" + currentCharacter.get_asStat());
+        _vitalityStatus.setText("" + currentCharacter.get_hpStat());
     }
 
 

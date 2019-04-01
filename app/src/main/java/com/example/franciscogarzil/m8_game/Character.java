@@ -7,12 +7,12 @@ public class Character {
     private String _user;
     private int _masteryPoints;
     private int _powerStat;
-    private int _asStat;
+    private float _asStat;
     private int _hpStat;
     private Date _dateCreate;
 
 
-    public Character(String name, String user, int masteryPoints, int powerStat, int asStat, int hpStat, Date dateCreate) {
+    public Character(String name, String user, int masteryPoints, int powerStat, float asStat, int hpStat, Date dateCreate) {
         this._name = name;
         this._user = user;
         this._masteryPoints = masteryPoints;
@@ -54,7 +54,7 @@ public class Character {
         this._powerStat = powerStat;
     }
 
-    public int get_asStat() {
+    public float get_asStat() {
         return _asStat;
     }
 

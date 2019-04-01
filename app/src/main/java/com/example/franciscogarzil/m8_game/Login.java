@@ -2,6 +2,7 @@ package com.example.franciscogarzil.m8_game;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +18,7 @@ public class Login extends AppCompatActivity {
     String password = "";
     public static String currentUserName;
     static int number = 0;
+
     private Timer timer;
     //private MyTimerTask task;
     private Context context;
@@ -30,7 +32,13 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
         getSupportActionBar().hide();
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         references();
+    }
+
+    @Override
+    public void onBackPressed () {
+
     }
 
     private void references(){

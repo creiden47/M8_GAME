@@ -2,6 +2,7 @@ package com.example.franciscogarzil.m8_game;
 
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.Image;
@@ -38,6 +39,7 @@ public class MainMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
         getSupportActionBar().hide();
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         try {
             characters();
         } catch (ClassNotFoundException e) {
@@ -145,5 +147,9 @@ public class MainMenu extends AppCompatActivity {
             });
 
         }
+    }
+    @Override
+    public void onBackPressed () {
+
     }
 }

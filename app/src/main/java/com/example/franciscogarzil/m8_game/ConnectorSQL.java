@@ -130,7 +130,7 @@ public class ConnectorSQL {
                 rs = stmt.executeQuery(sqlSelect);
                 while(rs.next()) {
                     Character c = new Character(rs.getString(1), rs.getString(2), rs.getInt(3),
-                            rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getDate(7));
+                            rs.getInt(4), rs.getFloat(5), rs.getInt(6), rs.getDate(7));
                     al.add(c);
                 }
             return al;
@@ -152,7 +152,7 @@ public class ConnectorSQL {
                 rs = stmt.executeQuery(sqlSelect);
                 rs.next();
                 Character c = new Character(rs.getString(1), rs.getString(2), rs.getInt(3),
-                        rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getDate(7));
+                        rs.getInt(4), rs.getFloat(5), rs.getInt(6), rs.getDate(7));
                 return c;
             } catch (SQLException e) { //Sql error
                 return null;
@@ -165,21 +165,70 @@ public class ConnectorSQL {
         Connection con = getConnection(); //Get connection
         if (con != null) { //If connected
             Statement stmt = null;
-            String sqlUpdate = "UPDATE Characters" +
-                    "set " + stat + " = " +
-                    "(Select " + stat + "from Characters where pk_name = " + nameCharacter + ") + 1" +
-                    "WHERE pk_name = " + nameCharacter + ";";
+            String sqlUpdate;
+            if (stat == "as_stat"){
+                sqlUpdate = "UPDATE Characters" +
+                        "set " + stat + " = " +
+                        "(Select " + stat + "from Characters where pk_name = '" + nameCharacter + "') - 0.05" +
+                        "set mastery_points = " +
+                        "(Select mastery points from Characters where pk_name = '" + nameCharacter + "') - 1" +
+                        "WHERE pk_name = " + nameCharacter + ";";
+            }else if (stat == "power_stat"){
+                sqlUpdate = "UPDATE Characters" +
+                        "set " + stat + " = " +
+                        "(Select " + stat + "from Characters where pk_name = '" + nameCharacter + "') + 1" +
+                        "set mastery_points = " +
+                        "(Select mastery points from Characters where pk_name = '" + nameCharacter + "') - 1" +
+                        "WHERE pk_name = " + nameCharacter + ";";
+            } else {
+                sqlUpdate = "UPDATE Characters" +
+                        "set " + stat + " = " +
+                        "(Select " + stat + "from Characters where pk_name = '" + nameCharacter + "') + 10" +
+                        "set mastery_points = " +
+                        "(Select mastery points from Characters where pk_name = '" + nameCharacter + "') - 1" +
+                        "WHERE pk_name = " + nameCharacter + ";";
+            }
+
             try {
                 stmt = con.createStatement();
                 stmt.executeUpdate(sqlUpdate);
                 con.commit();
-                return nameCharacter + "incremented his stats";
+                switch(stat){
+                    case "power_stat":
+                        return nameCharacter + "incremented your power";
+                    case "as_stat":
+                        return nameCharacter + "incremented your dexterity";
+                    case "hp_stat":
+                        return nameCharacter + "incremented your hp";
+                }
+
             } catch (SQLException e) { //Sql error
                 return e.getMessage();
             }
-        }else {
-            return "Can't connect to the server";
         }
+        return "Can't connect to the server";
 
+    }
+
+    public static String incrementMasteryPoints(String nameCharacter, int numIncrement) throws ClassNotFoundException{
+        Connection con = getConnection(); //Get connection
+        if (con != null) { //If connected
+            Statement stmt = null;
+
+            String sqlUpdate = "UPDATE Characters" +
+                        "set mastery_points = " +
+                        "(Select mastery_points from Characters where pk_name = '" + nameCharacter + "') + " + numIncrement +
+                        "WHERE pk_name = " + nameCharacter + ";";
+
+            try {
+                stmt = con.createStatement();
+                stmt.executeUpdate(sqlUpdate);
+                con.commit();
+                return "You earned " + numIncrement + " mastery points";
+            } catch (SQLException e) { //Sql error
+                return "Error while earning mastery points";
+            }
+        }
+        return "Can't connect to the server";
     }
 }
