@@ -1,4 +1,4 @@
-package com.example.franciscogarzil.m8_game;
+package com.example.franciscogarzil.m8_game.PKG_GAME;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +14,13 @@ import android.hardware.SensorManager;
 import android.hardware.SensorEventListener;
 import android.widget.Toast;
 
+import com.example.franciscogarzil.m8_game.PKG_ACTIVITIES.CharacterPage;
+import com.example.franciscogarzil.m8_game.PKG_CONNECTION.ConnectorSQL;
+import com.example.franciscogarzil.m8_game.PKG_ACTIVITIES.MainMenu;
+import com.example.franciscogarzil.m8_game.PKG_CLASS.Enemy;
+import com.example.franciscogarzil.m8_game.PKG_CLASS.FireBall;
+import com.example.franciscogarzil.m8_game.R;
+
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -26,7 +33,7 @@ public class inGame extends AppCompatActivity {
     private MyTimerTask task;
     private Timer timer;
     private int interval=100;
-    public static int minutes = 0, seconds = 0, ds = 0;
+    public static int minutes, seconds, ds;
     private Context context;
     public static ArrayList<Enemy> alEnemies;
     public static ArrayList<FireBall> alFireballs;
@@ -46,9 +53,11 @@ public class inGame extends AppCompatActivity {
         alRectEnemies = new ArrayList<Rect>();
         alRectFireballs = new ArrayList<Rect>();
         current_hp = MainMenu.currentCharacter.get_hpStat();
+        minutes = 0; seconds = 0; ds = 0;
         game_over = false;
         StartSensor();
         startTimer();
+
     }
 
     @Override
@@ -92,15 +101,49 @@ public class inGame extends AppCompatActivity {
             if (!game_over){
                 ds++;
                 int posXAleatory=(int)Math.floor(Math.random()*(130-GView.width-90)+GView.width-90);
-                if ((ds % 10) == 0){
-                    seconds++;
-                    Bitmap bitmapEnemy = BitmapFactory.decodeResource(context.getResources(), R.drawable.enemy1);
-                    int moveAleatory=(int)Math.floor(Math.random()*(5-8)+8);
-                    Enemy enemy = new Enemy(bitmapEnemy, posXAleatory, 0, moveAleatory);
-                    alEnemies.add(enemy);
-                    Rect enemyRect = new Rect();
-                    alRectEnemies.add(enemyRect);
+                if (minutes >= 1 && minutes <= 3){
+                    if ((ds % 12) == 0) {
+                        seconds++;
+                        Bitmap bitmapEnemy = BitmapFactory.decodeResource(context.getResources(), R.drawable.enemy1);
+                        int moveAleatory=(int)Math.floor(Math.random()*(4-5)+5);
+                        Enemy enemy = new Enemy(bitmapEnemy, posXAleatory, 0, moveAleatory);
+                        alEnemies.add(enemy);
+                        Rect enemyRect = new Rect();
+                        alRectEnemies.add(enemyRect);
+                    }
+                } else if (minutes >= 3 && minutes <7){
+                    if ((ds % 10) == 0) {
+                        seconds++;
+                        Bitmap bitmapEnemy = BitmapFactory.decodeResource(context.getResources(), R.drawable.enemy1);
+                        int moveAleatory=(int)Math.floor(Math.random()*(4-6)+6);
+                        Enemy enemy = new Enemy(bitmapEnemy, posXAleatory, 0, moveAleatory);
+                        alEnemies.add(enemy);
+                        Rect enemyRect = new Rect();
+                        alRectEnemies.add(enemyRect);
+                    }
+                } else if (minutes >= 7){
+                    if ((ds % 8) == 0) {
+                        seconds++;
+                        Bitmap bitmapEnemy = BitmapFactory.decodeResource(context.getResources(), R.drawable.enemy1);
+                        int moveAleatory=(int)Math.floor(Math.random()*(5-7)+7);
+                        Enemy enemy = new Enemy(bitmapEnemy, posXAleatory, 0, moveAleatory);
+                        alEnemies.add(enemy);
+                        Rect enemyRect = new Rect();
+                        alRectEnemies.add(enemyRect);
+                    }
+                } else {
+                    if ((ds % 15) == 0) {
+                        seconds++;
+                        Bitmap bitmapEnemy = BitmapFactory.decodeResource(context.getResources(), R.drawable.enemy1);
+                        int moveAleatory = (int) Math.floor(Math.random() * (3 - 5) + 5);
+                        Enemy enemy = new Enemy(bitmapEnemy, posXAleatory, 0, moveAleatory);
+                        alEnemies.add(enemy);
+                        Rect enemyRect = new Rect();
+                        alRectEnemies.add(enemyRect);
+                    }
                 }
+
+
                 if (seconds == 60) {
                     minutes++;
                     seconds = 00;
@@ -121,13 +164,15 @@ public class inGame extends AppCompatActivity {
                 }
 
             } else {
+
+                stopTimer();
                 int numPoints = 0;
-                if (minutes > 1){
-                    if (minutes > 1 && minutes < 3){
+                if (minutes >= 1){
+                    if (minutes >= 1 && minutes <= 3){
                         numPoints = 1;
-                    } else if (minutes > 3 && minutes < 7){
+                    } else if (minutes >= 3 && minutes <7){
                         numPoints = 2;
-                    } else if (minutes > 7){
+                    } else if (minutes >= 7){
                         numPoints = 3;
                     }
                     Toast.makeText(getApplicationContext(), ConnectorSQL.incrementMasteryPoints(MainMenu.currentCharacter.get_name(), numPoints), Toast.LENGTH_LONG).show();
@@ -152,6 +197,11 @@ public class inGame extends AppCompatActivity {
         task=new MyTimerTask(context);
         timer = new Timer("myTimer");
         timer.schedule(task, 0, interval);
+    }
+
+    private void stopTimer(){
+        timer.cancel();
+        timer=null; task=null;
     }
 
 

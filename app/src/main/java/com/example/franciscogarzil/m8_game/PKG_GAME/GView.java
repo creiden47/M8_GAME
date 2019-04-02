@@ -1,7 +1,6 @@
-package com.example.franciscogarzil.m8_game;
+package com.example.franciscogarzil.m8_game.PKG_GAME;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -13,6 +12,9 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.util.DisplayMetrics;
 import android.view.View;
+
+import com.example.franciscogarzil.m8_game.PKG_CLASS.AudioPlayer;
+import com.example.franciscogarzil.m8_game.R;
 
 public class GView extends View implements SensorEventListener{
     private Context context = null;
@@ -61,6 +63,9 @@ public class GView extends View implements SensorEventListener{
 
     @Override
     protected void onDraw(Canvas canvas) {
+
+        AudioPlayer au = new AudioPlayer();
+
         //Draw Player
         canvas.drawBitmap(bitmapPlayer, posX, height - 300 ,null);
 
@@ -107,6 +112,7 @@ public class GView extends View implements SensorEventListener{
         for (int i = 0; i < inGame.alEnemies.size(); i++){
             for (int j = 0; j < inGame.alFireballs.size(); j++){
                 if (inGame.alRectEnemies.get(i).intersect(inGame.alRectFireballs.get(j))){
+                    au.play(getContext(), R.raw.enemysound);
                     inGame.alEnemies.remove(i);
                     inGame.alRectEnemies.remove(i);
                     inGame.alFireballs.remove(j);
@@ -119,7 +125,7 @@ public class GView extends View implements SensorEventListener{
         //Check if enemy touch base = lose hp;
         for (int i = 0; i < inGame.alEnemies.size(); i++){
             if (inGame.alEnemies.get(i).getPosY() > height - 300){
-                AudioPlayer au = new AudioPlayer();
+
                 inGame.alEnemies.remove(i);
                 inGame.alRectEnemies.remove(i);
                 inGame.current_hp = inGame.current_hp - 10;
@@ -128,8 +134,6 @@ public class GView extends View implements SensorEventListener{
                     au.play(getContext(), R.raw.sound);
                     // Start new game:
                     inGame.game_over = true;
-                } else {
-                    au.play(getContext(), R.raw.sound_hit);
                 }
 
             }

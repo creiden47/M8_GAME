@@ -1,4 +1,4 @@
-package com.example.franciscogarzil.m8_game;
+package com.example.franciscogarzil.m8_game.PKG_CLASS;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package com.example.franciscogarzil.m8_game;
+package com.example.franciscogarzil.m8_game.PKG_ACTIVITIES;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -8,8 +8,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import static com.example.franciscogarzil.m8_game.MainMenu.currentCharacter;
+import com.example.franciscogarzil.m8_game.PKG_CONNECTION.ConnectorSQL;
+import com.example.franciscogarzil.m8_game.PKG_GAME.inGame;
+import com.example.franciscogarzil.m8_game.R;
+
+import static com.example.franciscogarzil.m8_game.PKG_ACTIVITIES.MainMenu.currentCharacter;
 
 public class CharacterPage extends AppCompatActivity {
 
@@ -47,6 +52,11 @@ public class CharacterPage extends AppCompatActivity {
         _newGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                try {
+                    MainMenu.currentCharacter = ConnectorSQL.getCharacter(currentCharacter.get_name());
+                } catch (ClassNotFoundException e) {
+                    Toast.makeText(getApplicationContext(), "Error while refreshing data.", Toast.LENGTH_LONG).show();
+                }
                 // Start new game:
                 Intent myIntent = new Intent(CharacterPage.this, inGame.class);
                 CharacterPage.this.startActivity(myIntent);

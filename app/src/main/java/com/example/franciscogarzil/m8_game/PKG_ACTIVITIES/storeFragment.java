@@ -1,18 +1,18 @@
-package com.example.franciscogarzil.m8_game;
+package com.example.franciscogarzil.m8_game.PKG_ACTIVITIES;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
-import static com.example.franciscogarzil.m8_game.MainMenu.currentCharacter;
+import com.example.franciscogarzil.m8_game.PKG_CLASS.Character;
+import com.example.franciscogarzil.m8_game.PKG_CONNECTION.ConnectorSQL;
+import com.example.franciscogarzil.m8_game.R;
+
+import static com.example.franciscogarzil.m8_game.PKG_ACTIVITIES.MainMenu.currentCharacter;
 
 public class storeFragment extends AppCompatActivity implements View.OnClickListener {
 
@@ -21,7 +21,26 @@ public class storeFragment extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_store);
 
-        new StatusInit(this);
+        // Text Views
+        // Welcome message
+        TextView welcomeMsg = findViewById(R.id.welcome_msg);
+        // Get Placeholder
+        String welcome_placeholder = "Welcome " + currentCharacter.get_name();
+        // Set Texts
+        welcomeMsg.setText(welcome_placeholder);
+        // Character Status
+        // Text Views
+        TextView _dmgStatus = findViewById(R.id.txtStatusDmg);
+        TextView _speedStatus = findViewById(R.id.txtStatusSpeed);
+        TextView _vitalityStatus = findViewById(R.id.txtStatusVitality);
+        TextView _masteryPoints = findViewById(R.id.masteryPoints);
+        // Get Placeholder
+        String _mpPlaceholder = getResources().getString(R.string.money) + " " + currentCharacter.get_masteryPoints();
+        // Set Texts
+        _masteryPoints.setText(_mpPlaceholder);
+        _dmgStatus.setText("" + currentCharacter.get_powerStat());
+        _speedStatus.setText("" + currentCharacter.get_asStat());
+        _vitalityStatus.setText("" + currentCharacter.get_hpStat());
 
         // Initialize Buttons:
         ImageButton _goBack = findViewById(R.id.btnFkGoBack);

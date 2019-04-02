@@ -1,4 +1,4 @@
-package com.example.franciscogarzil.m8_game;
+package com.example.franciscogarzil.m8_game.PKG_CONNECTION;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import android.os.StrictMode;
+
+import com.example.franciscogarzil.m8_game.PKG_CLASS.Character;
 
 public class ConnectorSQL {
 
@@ -26,7 +28,7 @@ public class ConnectorSQL {
         }
     }
 
-    public static String insertUser(String username, String password, String salt) throws ClassNotFoundException {
+    public static String insertUser(String username, String password) throws ClassNotFoundException {
         Connection con = getConnection(); //Get connection
         if (con != null) {
             Statement stmt;
@@ -36,7 +38,6 @@ public class ConnectorSQL {
                 stmt = con.createStatement();
                 stmt.executeUpdate(sql); //Do insert
 
-                con.commit(); //Commit
                 con.close(); //Close connection
                 return username +  " registered";
             } catch (SQLException e) { //Error sql
@@ -192,7 +193,6 @@ public class ConnectorSQL {
             try {
                 stmt = con.createStatement();
                 stmt.executeUpdate(sqlUpdate);
-                con.commit();
                 switch(stat){
                     case "power_stat":
                         return nameCharacter + "incremented your power";
@@ -215,18 +215,19 @@ public class ConnectorSQL {
         if (con != null) { //If connected
             Statement stmt = null;
 
-            String sqlUpdate = "UPDATE Characters" +
+            String sqlUpdate = "UPDATE Characters " +
                         "set mastery_points = " +
                         "(Select mastery_points from Characters where pk_name = '" + nameCharacter + "') + " + numIncrement +
-                        "WHERE pk_name = " + nameCharacter + ";";
+                        " WHERE pk_name = '" + nameCharacter + "';";
+
 
             try {
                 stmt = con.createStatement();
                 stmt.executeUpdate(sqlUpdate);
-                con.commit();
                 return "You earned " + numIncrement + " mastery points";
             } catch (SQLException e) { //Sql error
-                return "Error while earning mastery points";
+                //return "Error while earning mastery points";
+                return e.getMessage();
             }
         }
         return "Can't connect to the server";

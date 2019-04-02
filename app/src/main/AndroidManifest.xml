@@ -11,16 +11,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Login">
+        <activity android:name=".PKG_ACTIVITIES.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainMenu"></activity>
-        <activity android:name=".CharacterPage"></activity>
-        <activity android:name=".inGame"></activity>
+        <activity android:name=".PKG_ACTIVITIES.MainMenu"></activity>
+        <activity android:name=".PKG_ACTIVITIES.CharacterPage"></activity>
+        <activity android:name=".PKG_GAME.inGame"></activity>
+        <activity android:name=".PKG_ACTIVITIES.storeFragment"></activity>
     </application>
 
 </manifest>

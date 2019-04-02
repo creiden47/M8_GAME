@@ -1,28 +1,26 @@
-package com.example.franciscogarzil.m8_game;
+package com.example.franciscogarzil.m8_game.PKG_CLASS;
 
 import android.graphics.Bitmap;
 
-public class Enemy {
-    private Bitmap bitmapEnemy;
-    private int posX, posY, move;
+public class FireBall {
+    private Bitmap bitmapFireBall;
+    private int posX, posY;
     private int width, heigth;
 
-
-    public Enemy(Bitmap bitmapEnemy, int posX, int posY, int move) {
-        this.bitmapEnemy = bitmapEnemy;
+    public FireBall(Bitmap bitmapFireBall, int posX, int posY) {
+        this.bitmapFireBall = bitmapFireBall;
         this.posX = posX;
         this.posY = posY;
-        this.move = move;
-        width = 100;
-        heigth = 100;
+        width = 30;
+        heigth = 50;
     }
 
-    public Bitmap getBitmapEnemy() {
-        return bitmapEnemy;
+    public Bitmap getBitmapFireBall() {
+        return bitmapFireBall;
     }
 
-    public void setBitmapEnemy(Bitmap bitmapEnemy) {
-        this.bitmapEnemy = bitmapEnemy;
+    public void setBitmapFireBall(Bitmap bitmapFireBall) {
+        this.bitmapFireBall = bitmapFireBall;
     }
 
     public int getPosX() {
@@ -39,14 +37,6 @@ public class Enemy {
 
     public void setPosY(int posY) {
         this.posY = posY;
-    }
-
-    public int getMove() {
-        return move;
-    }
-
-    public void setMove(int move) {
-        this.move = move;
     }
 
     public int getWidth() {

@@ -1,4 +1,4 @@
-package com.example.franciscogarzil.m8_game;
+package com.example.franciscogarzil.m8_game.PKG_ACTIVITIES;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,7 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import java.sql.Connection;
+
+import com.example.franciscogarzil.m8_game.PKG_CONNECTION.ConnectorSQL;
+import com.example.franciscogarzil.m8_game.R;
+
 import java.util.Timer;
 
 
@@ -17,15 +20,10 @@ public class Login extends AppCompatActivity {
     String username = "";
     String password = "";
     public static String currentUserName;
-    static int number = 0;
-
-    private Timer timer;
-    //private MyTimerTask task;
-    private Context context;
-    private int counter = 25;
-    private int interval = 10;
     EditText EditTextUsername = null;
     EditText EditTextPassword = null;
+    Button btnLogin = null;
+    Button btnRegister = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +42,11 @@ public class Login extends AppCompatActivity {
     private void references(){
         EditTextUsername = (EditText) findViewById(R.id.EditTextUsername);
         EditTextPassword = (EditText) findViewById(R.id.EditTextPassword);
+        btnLogin = findViewById(R.id.btnLogin);
+        btnLogin = findViewById(R.id.btnRegister);
     }
 
     public void login(View v) throws ClassNotFoundException {
-        Button btnLogin = findViewById(R.id.btnLogin);
         btnLogin.setBackgroundResource(R.drawable.button_selected);
         btnLogin.setTextColor(getResources().getColor(R.color.colorTextSelected));
         username = EditTextUsername.getText().toString();
@@ -65,6 +64,20 @@ public class Login extends AppCompatActivity {
             btnLogin.setTextColor(getResources().getColor(R.color.colorTextLight));
         } else {
             msToast(exists);
+        }
+    }
+
+    public void register(View v) throws ClassNotFoundException {
+        btnRegister.setBackgroundResource(R.drawable.button_selected);
+        btnRegister.setTextColor(getResources().getColor(R.color.colorTextSelected));
+        username = EditTextUsername.getText().toString();
+        password = EditTextPassword.getText().toString();
+        if(!ConnectorSQL.checkUserExists(username)){
+            msToast(ConnectorSQL.insertUser(username, password));
+        } else{
+            msToast("This username alredy exists.");
+            btnRegister.setBackgroundResource(R.drawable.button);
+            btnRegister.setTextColor(getResources().getColor(R.color.colorTextLight));
         }
     }
 

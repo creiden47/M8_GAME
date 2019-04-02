@@ -1,21 +1,12 @@
-package com.example.franciscogarzil.m8_game;
+package com.example.franciscogarzil.m8_game.PKG_ACTIVITIES;
 
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
-import android.graphics.Typeface;
-import android.media.Image;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -24,7 +15,9 @@ import android.widget.TextView;
 import android.view.ViewGroup.LayoutParams;
 import android.view.ViewGroup.MarginLayoutParams;
 
-import org.w3c.dom.Text;
+import com.example.franciscogarzil.m8_game.PKG_CLASS.Character;
+import com.example.franciscogarzil.m8_game.PKG_CONNECTION.ConnectorSQL;
+import com.example.franciscogarzil.m8_game.R;
 
 import java.util.ArrayList;
 
