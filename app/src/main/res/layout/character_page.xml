@@ -59,11 +59,11 @@
             android:layout_width="170dp"
             android:layout_height="60dp"
             android:layout_gravity="bottom"
-            android:background="@drawable/button_disabled"
+            android:background="@drawable/button"
             android:text="LIBRARY"
             android:textStyle="italic"
             android:fontFamily="@font/font_main"
-            android:textColor="@color/colorDisabled"
+            android:textColor="@color/colorAccent"
             android:textSize="22sp" />
     </LinearLayout>
 

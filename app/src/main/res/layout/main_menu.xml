@@ -41,6 +41,7 @@
             android:id="@+id/createCharacterBtn"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:onClick="newCharacterEvent"
             android:layout_gravity="bottom"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"

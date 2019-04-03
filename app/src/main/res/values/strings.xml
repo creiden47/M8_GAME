@@ -17,4 +17,5 @@
     <string name="item_price">200</string>
     <string name="item_type">Weapons</string>
     <string name="fragment_skills_title">Upgrade Skills</string>
+    <string name="character_name">Character Name</string>
 </resources>

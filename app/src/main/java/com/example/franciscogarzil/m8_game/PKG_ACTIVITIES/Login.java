@@ -43,7 +43,7 @@ public class Login extends AppCompatActivity {
         EditTextUsername = (EditText) findViewById(R.id.EditTextUsername);
         EditTextPassword = (EditText) findViewById(R.id.EditTextPassword);
         btnLogin = findViewById(R.id.btnLogin);
-        btnLogin = findViewById(R.id.btnRegister);
+        btnRegister = findViewById(R.id.btnRegister);
     }
 
     public void login(View v) throws ClassNotFoundException {

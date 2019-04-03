@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -15,6 +15,7 @@
         android:id="@+id/TextViewGameName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:fontFamily="@font/font_main"
         android:text="@string/game_name"
         android:textAlignment="center"
@@ -25,6 +26,7 @@
         android:id="@+id/EditTextUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/TextViewGameName"
         android:layout_marginTop="124dp"
         android:fontFamily="@font/font_main"
         android:hint="@string/username_hint"
@@ -38,6 +40,7 @@
         android:id="@+id/EditTextPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/EditTextUsername"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/font_main"
         android:hint="@string/password_hint"
@@ -47,36 +50,38 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dip"
-        android:layout_weight="1"
-        android:gravity="center|bottom"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_marginBottom="24dp"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
         <Button
-                android:id="@+id/btnRegister"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:background="@drawable/button"
-                android:text="Register"
-                android:onClick="register"
-                android:textStyle="italic"
-                android:fontFamily="@font/font_main"
-                android:textColor="@color/colorAccent"
-                android:textSize="28sp" />
+            android:id="@+id/btnRegister"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:layout_weight="1"
+            android:background="@drawable/button"
+            android:fontFamily="@font/font_main"
+            android:onClick="register"
+            android:text="Register"
+            android:textColor="@color/colorAccent"
+            android:textSize="28sp"
+            android:textStyle="italic"
+            android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp" />
+
         <Button
             android:id="@+id/btnLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="64dp"
             android:background="@drawable/button"
-            android:text="LOGIN"
-            android:onClick="login"
-            android:textStyle="italic"
             android:fontFamily="@font/font_main"
+            android:onClick="login"
+            android:text="LOGIN"
             android:textColor="@color/colorAccent"
-            android:textSize="28sp" />
+            android:textSize="28sp"
+            android:textStyle="italic" />
 
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

@@ -168,26 +168,26 @@ public class ConnectorSQL {
             Statement stmt = null;
             String sqlUpdate;
             if (stat == "as_stat"){
-                sqlUpdate = "UPDATE Characters" +
+                sqlUpdate = "UPDATE Characters " +
                         "set " + stat + " = " +
                         "(Select " + stat + "from Characters where pk_name = '" + nameCharacter + "') - 0.05" +
-                        "set mastery_points = " +
+                        " set mastery_points = " +
                         "(Select mastery points from Characters where pk_name = '" + nameCharacter + "') - 1" +
-                        "WHERE pk_name = " + nameCharacter + ";";
+                        " WHERE pk_name = " + nameCharacter + ";";
             }else if (stat == "power_stat"){
-                sqlUpdate = "UPDATE Characters" +
+                sqlUpdate = " UPDATE Characters" +
                         "set " + stat + " = " +
                         "(Select " + stat + "from Characters where pk_name = '" + nameCharacter + "') + 1" +
-                        "set mastery_points = " +
+                        " set mastery_points = " +
                         "(Select mastery points from Characters where pk_name = '" + nameCharacter + "') - 1" +
-                        "WHERE pk_name = " + nameCharacter + ";";
+                        " WHERE pk_name = " + nameCharacter + ";";
             } else {
-                sqlUpdate = "UPDATE Characters" +
+                sqlUpdate = "UPDATE Characters " +
                         "set " + stat + " = " +
                         "(Select " + stat + "from Characters where pk_name = '" + nameCharacter + "') + 10" +
-                        "set mastery_points = " +
+                        " set mastery_points = " +
                         "(Select mastery points from Characters where pk_name = '" + nameCharacter + "') - 1" +
-                        "WHERE pk_name = " + nameCharacter + ";";
+                        " WHERE pk_name = " + nameCharacter + ";";
             }
 
             try {

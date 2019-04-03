@@ -145,4 +145,9 @@ public class MainMenu extends AppCompatActivity {
     public void onBackPressed () {
 
     }
+
+    public void newCharacterEvent(View view) {
+        Intent myIntent = new Intent(MainMenu.this, NewCharacter.class);
+        MainMenu.this.startActivity(myIntent);
+    }
 }

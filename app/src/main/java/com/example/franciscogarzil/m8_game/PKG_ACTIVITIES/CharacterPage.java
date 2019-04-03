@@ -40,10 +40,10 @@ public class CharacterPage extends AppCompatActivity {
         // Get Placeholder
         String _mpPlaceholder = getResources().getString(R.string.money) + " " + currentCharacter.get_masteryPoints();
         // Set Texts
-        _masteryPoints.setText(_mpPlaceholder);
-        _dmgStatus.setText("" + currentCharacter.get_powerStat());
-        _speedStatus.setText("" + currentCharacter.get_asStat());
-        _vitalityStatus.setText("" + currentCharacter.get_hpStat());
+        _masteryPoints.setText(String.valueOf(_mpPlaceholder));
+        _dmgStatus.setText(String.valueOf(currentCharacter.get_powerStat()));
+        _speedStatus.setText(String.valueOf(currentCharacter.get_asStat()));
+        _vitalityStatus.setText(String.valueOf(currentCharacter.get_hpStat()));
 
         // Buttons
         Button _newGame = findViewById(R.id.btnNewGame);
