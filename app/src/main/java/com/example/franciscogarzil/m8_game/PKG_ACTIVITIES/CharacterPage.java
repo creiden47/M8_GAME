@@ -22,6 +22,7 @@ public class CharacterPage extends AppCompatActivity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.character_page);
+        getSupportActionBar().hide();
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         // Text Views
@@ -66,6 +67,11 @@ public class CharacterPage extends AppCompatActivity {
         _library.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                try {
+                    MainMenu.currentCharacter = ConnectorSQL.getCharacter(currentCharacter.get_name());
+                } catch (ClassNotFoundException e) {
+                    Toast.makeText(getApplicationContext(), "Error while refreshing data.", Toast.LENGTH_LONG).show();
+                }
                 // Go to the library:
                 Intent myIntent = new Intent(CharacterPage.this, storeFragment.class);
                 CharacterPage.this.startActivity(myIntent);
@@ -75,5 +81,12 @@ public class CharacterPage extends AppCompatActivity {
     @Override
     public void onBackPressed () {
 
+    }
+
+    public void addMp(View view) throws ClassNotFoundException {
+        ConnectorSQL.incrementMasteryPoints(currentCharacter.get_name(), 1);
+        TextView mp = findViewById(R.id.masteryPoints);
+        currentCharacter = ConnectorSQL.getCharacter(currentCharacter.get_name());
+        mp.setText(getResources().getString(R.string.money) + " " + currentCharacter.get_masteryPoints());
     }
 }
