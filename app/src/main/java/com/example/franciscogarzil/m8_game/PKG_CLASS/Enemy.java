@@ -6,15 +6,17 @@ public class Enemy {
     private Bitmap bitmapEnemy;
     private int posX, posY, move;
     private int width, heigth;
+    private int hp;
 
 
-    public Enemy(Bitmap bitmapEnemy, int posX, int posY, int move) {
+    public Enemy(Bitmap bitmapEnemy, int posX, int posY, int move, int hp) {
         this.bitmapEnemy = bitmapEnemy;
         this.posX = posX;
         this.posY = posY;
         this.move = move;
-        width = 100;
-        heigth = 100;
+        this.width = 100;
+        this.heigth = 100;
+        this.hp = hp;
     }
 
     public Bitmap getBitmapEnemy() {
@@ -63,5 +65,13 @@ public class Enemy {
 
     public void setHeigth(int heigth) {
         this.heigth = heigth;
+    }
+
+    public int getHp() {
+        return hp;
+    }
+
+    public void setHp(int hp) {
+        this.hp = hp;
     }
 }
