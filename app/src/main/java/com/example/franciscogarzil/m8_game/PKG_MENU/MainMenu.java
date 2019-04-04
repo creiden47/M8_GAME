@@ -1,4 +1,4 @@
-package com.example.franciscogarzil.m8_game.PKG_ACTIVITIES;
+package com.example.franciscogarzil.m8_game.PKG_MENU;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;

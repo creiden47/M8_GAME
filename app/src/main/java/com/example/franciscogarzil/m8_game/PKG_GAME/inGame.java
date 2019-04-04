@@ -14,9 +14,9 @@ import android.hardware.SensorManager;
 import android.hardware.SensorEventListener;
 import android.widget.Toast;
 
-import com.example.franciscogarzil.m8_game.PKG_ACTIVITIES.CharacterPage;
+import com.example.franciscogarzil.m8_game.PKG_MENU.CharacterPage;
 import com.example.franciscogarzil.m8_game.PKG_CONNECTION.ConnectorSQL;
-import com.example.franciscogarzil.m8_game.PKG_ACTIVITIES.MainMenu;
+import com.example.franciscogarzil.m8_game.PKG_MENU.MainMenu;
 import com.example.franciscogarzil.m8_game.PKG_CLASS.Enemy;
 import com.example.franciscogarzil.m8_game.PKG_CLASS.FireBall;
 import com.example.franciscogarzil.m8_game.R;

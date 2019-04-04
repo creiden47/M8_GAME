@@ -9,7 +9,7 @@
     android:paddingLeft="32dp"
     android:paddingTop="106dp"
     android:paddingRight="32dp"
-    tools:context=".PKG_ACTIVITIES.Login">
+    tools:context=".PKG_MENU.Login">
 
     <TextView
         android:id="@+id/TextViewGameName"

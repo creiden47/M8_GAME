@@ -1,4 +1,4 @@
-package com.example.franciscogarzil.m8_game.PKG_ACTIVITIES;
+package com.example.franciscogarzil.m8_game.PKG_MENU;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.franciscogarzil.m8_game.PKG_CLASS.Character;
 import com.example.franciscogarzil.m8_game.PKG_CONNECTION.ConnectorSQL;
 import com.example.franciscogarzil.m8_game.R;
 

@@ -1,4 +1,4 @@
-package com.example.franciscogarzil.m8_game.PKG_ACTIVITIES;
+package com.example.franciscogarzil.m8_game.PKG_MENU;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -12,9 +12,10 @@ import android.widget.Toast;
 
 import com.example.franciscogarzil.m8_game.PKG_CONNECTION.ConnectorSQL;
 import com.example.franciscogarzil.m8_game.PKG_GAME.inGame;
+import com.example.franciscogarzil.m8_game.PKG_LIBRARY.storeFragment;
 import com.example.franciscogarzil.m8_game.R;
 
-import static com.example.franciscogarzil.m8_game.PKG_ACTIVITIES.MainMenu.currentCharacter;
+import static com.example.franciscogarzil.m8_game.PKG_MENU.MainMenu.currentCharacter;
 
 public class CharacterPage extends AppCompatActivity {
 
@@ -24,7 +25,11 @@ public class CharacterPage extends AppCompatActivity {
         setContentView(R.layout.character_page);
         getSupportActionBar().hide();
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
+        try {
+            MainMenu.currentCharacter = ConnectorSQL.getCharacter(MainMenu.currentCharacter.get_name());
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         // Text Views
         // Welcome message
         TextView welcomeMsg = findViewById(R.id.welcome_msg);

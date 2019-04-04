@@ -196,11 +196,11 @@ public class ConnectorSQL {
                 stmt.executeUpdate(sqlUpdate);
                 switch(stat){
                     case "power_stat":
-                        return nameCharacter + " incremented your power";
+                        return nameCharacter + " incremented his power";
                     case "as_stat":
-                        return nameCharacter + " incremented your dexterity";
+                        return nameCharacter + " incremented his dexterity";
                     case "hp_stat":
-                        return nameCharacter + " incremented your hp";
+                        return nameCharacter + " incremented his hp";
                 }
 
             } catch (SQLException e) { //Sql error

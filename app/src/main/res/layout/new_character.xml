@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_main"
-    tools:context=".PKG_ACTIVITIES.NewCharacter">
+    tools:context=".PKG_MENU.NewCharacter">
 
     <TextView
         android:id="@+id/char_msg"

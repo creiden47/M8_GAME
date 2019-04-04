@@ -11,18 +11,18 @@
         android:roundIcon="@drawable/logo_wolf"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PKG_ACTIVITIES.NewCharacter"></activity>
-        <activity android:name=".PKG_ACTIVITIES.Login">
+        <activity android:name=".PKG_MENU.NewCharacter"></activity>
+        <activity android:name=".PKG_MENU.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PKG_ACTIVITIES.MainMenu" />
-        <activity android:name=".PKG_ACTIVITIES.CharacterPage" />
+        <activity android:name=".PKG_MENU.MainMenu" />
+        <activity android:name=".PKG_MENU.CharacterPage" />
         <activity android:name=".PKG_GAME.inGame" />
-        <activity android:name=".PKG_ACTIVITIES.storeFragment" />
+        <activity android:name=".PKG_LIBRARY.storeFragment" />
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.example.franciscogarzil.m8_game.PKG_ACTIVITIES;
+package com.example.franciscogarzil.m8_game.PKG_MENU;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,8 +12,6 @@ import android.widget.Toast;
 
 import com.example.franciscogarzil.m8_game.PKG_CONNECTION.ConnectorSQL;
 import com.example.franciscogarzil.m8_game.R;
-
-import java.util.Timer;
 
 
 public class Login extends AppCompatActivity {

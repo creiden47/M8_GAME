@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/storeFragment2"
-        android:name="com.example.franciscogarzil.m8_game.PKG_ACTIVITIES.storeFragment"
+        android:name="com.example.franciscogarzil.m8_game.PKG_LIBRARY.storeFragment"
         android:label="fragment_store"
         tools:layout="@layout/fragment_store" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/characterPage"
-        android:name="com.example.franciscogarzil.m8_game.PKG_ACTIVITIES.CharacterPage"
+        android:name="com.example.franciscogarzil.m8_game.PKG_MENU.CharacterPage"
         android:label="character_page"
         tools:layout="@layout/character_page" >
         <action

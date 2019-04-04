@@ -11,10 +11,9 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 
-import com.example.franciscogarzil.m8_game.PKG_ACTIVITIES.MainMenu;
+import com.example.franciscogarzil.m8_game.PKG_MENU.MainMenu;
 import com.example.franciscogarzil.m8_game.PKG_CLASS.AudioPlayer;
 import com.example.franciscogarzil.m8_game.R;
 
