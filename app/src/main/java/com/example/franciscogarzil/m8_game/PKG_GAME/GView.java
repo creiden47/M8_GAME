@@ -11,8 +11,10 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 
+import com.example.franciscogarzil.m8_game.PKG_ACTIVITIES.MainMenu;
 import com.example.franciscogarzil.m8_game.PKG_CLASS.AudioPlayer;
 import com.example.franciscogarzil.m8_game.R;
 
@@ -112,12 +114,18 @@ public class GView extends View implements SensorEventListener{
         for (int i = 0; i < inGame.alEnemies.size(); i++){
             for (int j = 0; j < inGame.alFireballs.size(); j++){
                 if (inGame.alRectEnemies.get(i).intersect(inGame.alRectFireballs.get(j))){
-                    au.play(getContext(), R.raw.enemysound);
-                    inGame.alEnemies.remove(i);
-                    inGame.alRectEnemies.remove(i);
                     inGame.alFireballs.remove(j);
                     inGame.alRectFireballs.remove(j);
-                    numberKills++;
+                    inGame.alEnemies.get(i).setHp(inGame.alEnemies.get(i).getHp() - MainMenu.currentCharacter.get_powerStat());
+
+                    if (inGame.alEnemies.get(i).getHp() <= 0){
+                        au.play(getContext(), R.raw.enemysound);
+                        inGame.alEnemies.remove(i);
+                        inGame.alRectEnemies.remove(i);
+                        numberKills++;
+                    } else {
+                        au.play(getContext(), R.raw.fireballsound);
+                    }
                     break;
                 }
             }
