@@ -6,6 +6,7 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
+import android.os.Build;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -47,6 +48,7 @@ public class inGame extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        getSupportActionBar().hide();
         gView = new GView(this);
         setContentView(gView);
         alEnemies = new ArrayList<Enemy>();
@@ -56,6 +58,9 @@ public class inGame extends AppCompatActivity {
         current_hp = MainMenu.currentCharacter.get_hpStat();
         minutes = 0; seconds = 0; ds = 0;
         attackSpeed = MainMenu.currentCharacter.get_asStat() * 10;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            gView.setBackground(getResources().getDrawable(R.drawable.background2));
+        }
         game_over = false;
         StartSensor();
         startTimer();
@@ -102,18 +107,18 @@ public class inGame extends AppCompatActivity {
             if (!game_over){
                 ds++;
                 int posXAleatory=(int)Math.floor(Math.random()*(130-GView.width-90)+GView.width-90);
-                if (minutes >= 1 && minutes <= 3){
+                if (minutes >= 1 && minutes <= 3) {
                     if ((ds % 25) == 0) {
                         Bitmap bitmapEnemy = BitmapFactory.decodeResource(context.getResources(), R.drawable.enemy1);
                         int moveAleatory=(int)Math.floor(Math.random()*(1-2)+2);
-                        Enemy enemy = new Enemy(bitmapEnemy, posXAleatory, 0, moveAleatory, 8);
+                        Enemy enemy = new Enemy(bitmapEnemy, posXAleatory, 154, moveAleatory, 8);
                         alEnemies.add(enemy);
                         Rect enemyRect = new Rect();
                         alRectEnemies.add(enemyRect);
                     }
                     if ((ds % 35) == 0) {
                         Bitmap bitmapEnemy = BitmapFactory.decodeResource(context.getResources(), R.drawable.enemy2);
-                        Enemy enemy = new Enemy(bitmapEnemy, posXAleatory, 0, 1, 15);
+                        Enemy enemy = new Enemy(bitmapEnemy, posXAleatory, 154, 1, 15);
                         alEnemies.add(enemy);
                         Rect enemyRect = new Rect();
                         alRectEnemies.add(enemyRect);
@@ -122,7 +127,7 @@ public class inGame extends AppCompatActivity {
                     if ((ds % 20) == 0) {
                         Bitmap bitmapEnemy = BitmapFactory.decodeResource(context.getResources(), R.drawable.enemy1);
                         int moveAleatory=(int)Math.floor(Math.random()*(2-3)+3);
-                        Enemy enemy = new Enemy(bitmapEnemy, posXAleatory, 0, moveAleatory, 8);
+                        Enemy enemy = new Enemy(bitmapEnemy, posXAleatory, 154, moveAleatory, 8);
                         alEnemies.add(enemy);
                         Rect enemyRect = new Rect();
                         alRectEnemies.add(enemyRect);
@@ -130,7 +135,7 @@ public class inGame extends AppCompatActivity {
                     if ((ds % 30) == 0) {
                         Bitmap bitmapEnemy = BitmapFactory.decodeResource(context.getResources(), R.drawable.enemy2);
                         int moveAleatory=(int)Math.floor(Math.random()*(1-2)+2);
-                        Enemy enemy = new Enemy(bitmapEnemy, posXAleatory, 0, moveAleatory, 15);
+                        Enemy enemy = new Enemy(bitmapEnemy, posXAleatory, 154, moveAleatory, 15);
                         alEnemies.add(enemy);
                         Rect enemyRect = new Rect();
                         alRectEnemies.add(enemyRect);
@@ -139,7 +144,7 @@ public class inGame extends AppCompatActivity {
                     if ((ds % 12) == 0) {
                         Bitmap bitmapEnemy = BitmapFactory.decodeResource(context.getResources(), R.drawable.enemy1);
                         int moveAleatory=(int)Math.floor(Math.random()*(4-8)+8);
-                        Enemy enemy = new Enemy(bitmapEnemy, posXAleatory, 0, moveAleatory, 8);
+                        Enemy enemy = new Enemy(bitmapEnemy, posXAleatory, 154, moveAleatory, 8);
                         alEnemies.add(enemy);
                         Rect enemyRect = new Rect();
                         alRectEnemies.add(enemyRect);
@@ -147,7 +152,7 @@ public class inGame extends AppCompatActivity {
                     if ((ds % 20) == 0) {
                         Bitmap bitmapEnemy = BitmapFactory.decodeResource(context.getResources(), R.drawable.enemy2);
                         int moveAleatory=(int)Math.floor(Math.random()*(4-5)+5);
-                        Enemy enemy = new Enemy(bitmapEnemy, posXAleatory, 0, moveAleatory, 15);
+                        Enemy enemy = new Enemy(bitmapEnemy, posXAleatory, 154, moveAleatory, 15);
                         alEnemies.add(enemy);
                         Rect enemyRect = new Rect();
                         alRectEnemies.add(enemyRect);
@@ -157,7 +162,7 @@ public class inGame extends AppCompatActivity {
                         seconds++;
                         Bitmap bitmapEnemy = BitmapFactory.decodeResource(context.getResources(), R.drawable.enemy1);
                         int moveAleatory = (int) Math.floor(Math.random() * (1 - 2) + 2);
-                        Enemy enemy = new Enemy(bitmapEnemy, posXAleatory, 0, moveAleatory,8);
+                        Enemy enemy = new Enemy(bitmapEnemy, posXAleatory, 154, moveAleatory,8);
                         alEnemies.add(enemy);
                         Rect enemyRect = new Rect();
                         alRectEnemies.add(enemyRect);
@@ -174,9 +179,6 @@ public class inGame extends AppCompatActivity {
                     minutes = 0;
                     seconds = 0;
                 }
-
-
-
 
                 if (ds % attackSpeed == 0) {
                     Bitmap bitmapFireBall = BitmapFactory.decodeResource(context.getResources(), R.drawable.fireball);

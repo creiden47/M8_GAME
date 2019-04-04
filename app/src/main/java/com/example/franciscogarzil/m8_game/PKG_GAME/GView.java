@@ -1,15 +1,18 @@
 package com.example.franciscogarzil.m8_game.PKG_GAME;
 
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
+import android.os.Build;
 import android.util.DisplayMetrics;
 import android.view.View;
 
@@ -22,19 +25,23 @@ public class GView extends View implements SensorEventListener{
     public static int posX;
     public static int width, height;
     private Paint paint = new Paint();
-    Bitmap bitmapPlayer;
+    Bitmap bitmapPlayer, bgImage;
     public static int numberKills = 0;
-    private int numberHits = 0;
+    private int numberHits = MainMenu.currentCharacter.get_hpStat();
+    final AssetManager assets = getContext().getAssets();
 
 
     public GView(Context context) {
         super(context);
         this.context = context;
-
-        paint.setColor(Color.RED);
+        /*Typeface plain = Typeface.createFromAsset(assets, "C:\\Users\\ivanivamar\\OneDrive - Centre d'Estudis Monlau\\Monlau\\2DAM\\M8\\Android\\M8_GAME\\app\\src\\main\\res\\font\\main_font.ttf");
+        Typeface bold = (Typeface) Typeface.create(plain, Typeface.ITALIC);
+        paint.setTypeface(bold);*/
+        paint.setColor(getResources().getColor(R.color.colorAccent));
         paint.setTextSize(40f);
         paint.setAntiAlias(true);
         paint.setDither(true);
+        bgImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.background2); //Get ball image
         bitmapPlayer = BitmapFactory.decodeResource(context.getResources(), R.drawable.wizardplayer); //Get ball image
         DisplayMetrics metrics = this.getResources().getDisplayMetrics();
         width = metrics.widthPixels;
@@ -66,21 +73,25 @@ public class GView extends View implements SensorEventListener{
     protected void onDraw(Canvas canvas) {
 
         AudioPlayer au = new AudioPlayer();
-
         //Draw Player
         canvas.drawBitmap(bitmapPlayer, posX, height - 300 ,null);
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(getResources().getColor(R.color.cardBackground));
 
+        canvas.drawRect(0, 0, canvas.getWidth(), 154, paint);
+
+        paint.setColor(getResources().getColor(R.color.colorAccent));
         //Draw timer
         if (inGame.seconds < 10 || inGame.minutes < 10) {
             if (inGame.seconds < 10 && inGame.minutes >= 10) {
-                canvas.drawText(inGame.minutes + ":0" + inGame.seconds,0,200, paint);
+                canvas.drawText(inGame.minutes + ":0" + inGame.seconds,24,64, paint);
             } else if (inGame.minutes < 10 && inGame.seconds >= 10) {
-                canvas.drawText("0" + inGame.minutes + ":" + inGame.seconds,0,200, paint);
+                canvas.drawText("0" + inGame.minutes + ":" + inGame.seconds,24,64, paint);
             } else if (inGame.seconds < 10 && inGame.minutes < 10) {
-                canvas.drawText("0" + inGame.minutes + ":0" + inGame.seconds,0,200, paint);
+                canvas.drawText("0" + inGame.minutes + ":0" + inGame.seconds,24,64, paint);
             }
         }else {
-            canvas.drawText(inGame.minutes + ":" + inGame.seconds,0,200, paint);
+            canvas.drawText(inGame.minutes + ":" + inGame.seconds,0,64, paint);
         }
 
 
@@ -136,7 +147,7 @@ public class GView extends View implements SensorEventListener{
                 inGame.alEnemies.remove(i);
                 inGame.alRectEnemies.remove(i);
                 inGame.current_hp = inGame.current_hp - 10;
-                numberHits++;
+                numberHits -= 10;
                 if (inGame.current_hp <= 0 ){
                     au.play(getContext(), R.raw.sound);
                     // Start new game:
@@ -147,8 +158,8 @@ public class GView extends View implements SensorEventListener{
         }
 
         //Draw number of kills
-        canvas.drawText(numberKills + " Kills",0,400, paint);
-        canvas.drawText(numberHits + " Hits",0,600, paint);
+        //canvas.drawText(numberKills + " Kills",250,400, paint);
+        canvas.drawText("HP: " + numberHits,550,64, paint);
     }
 
 
