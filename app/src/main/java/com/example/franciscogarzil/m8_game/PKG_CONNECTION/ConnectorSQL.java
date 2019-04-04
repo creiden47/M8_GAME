@@ -170,24 +170,25 @@ public class ConnectorSQL {
             if (stat == "as_stat"){
                 sqlUpdate = "UPDATE Characters " +
                         "set " + stat + " = " +
-                        "(Select " + stat + " from Characters where pk_name = '" + nameCharacter + "') - 0.05" +
-                        " set mastery_points = " +
+                        "(Select " + stat + " from Characters where pk_name = '" + nameCharacter + "') - 0.05," +
+                        " mastery_points = " +
                         "(Select mastery_points from Characters where pk_name = '" + nameCharacter + "') - 1" +
                         " WHERE pk_name = '" + nameCharacter + "';";
             }else if (stat == "power_stat"){
                 sqlUpdate = "UPDATE Characters " +
                         "set " + stat + " = " +
-                        "(Select " + stat + " from Characters where pk_name = '" + nameCharacter + "') + 1" +
-                        " set mastery_points = " +
+                        "(Select " + stat + " from Characters where pk_name = '" + nameCharacter + "') + 1," +
+                        " mastery_points = " +
                         "(Select mastery_points from Characters where pk_name = '" + nameCharacter + "') - 1" +
                         " WHERE pk_name = '" + nameCharacter + "';";
             } else {
                 sqlUpdate = "UPDATE Characters " +
                         "set " + stat + " = " +
-                        "(Select " + stat + " from Characters where pk_name = '" + nameCharacter + "') + 10" +
-                        " set mastery_points = " +
+                        "(Select " + stat + " from Characters where pk_name = '" + nameCharacter + "') + 10," +
+                        " mastery_points = " +
                         "(Select mastery_points from Characters where pk_name = '" + nameCharacter + "') - 1" +
                         " WHERE pk_name = '" + nameCharacter + "';";
+
             }
 
             try {
@@ -195,11 +196,11 @@ public class ConnectorSQL {
                 stmt.executeUpdate(sqlUpdate);
                 switch(stat){
                     case "power_stat":
-                        return nameCharacter + "incremented your power";
+                        return nameCharacter + " incremented your power";
                     case "as_stat":
-                        return nameCharacter + "incremented your dexterity";
+                        return nameCharacter + " incremented your dexterity";
                     case "hp_stat":
-                        return nameCharacter + "incremented your hp";
+                        return nameCharacter + " incremented your hp";
                 }
 
             } catch (SQLException e) { //Sql error
