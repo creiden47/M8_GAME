@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/background_main"
+    tools:context=".PKG_MENU.howToPlay">
+
+
+    <LinearLayout
+        android:id="@+id/topbar"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@drawable/button">
+        <ImageButton
+            android:id="@+id/btnFkGoBack"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="#0F0F0F"
+            android:onClick="goBack"
+            android:contentDescription="TODO"
+            android:layout_margin="3dp"
+            android:src="@drawable/button_back"/>
+
+        <TextView
+            android:id="@+id/store_title"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:fontFamily="@font/main_font"
+            android:padding="16dp"
+            android:text="How to play"
+            android:textColor="@color/colorTextLight"
+            android:textSize="24sp"
+            android:textStyle="italic" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_below="@+id/topbar"
+        android:layout_centerHorizontal="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textColor="@color/colorAccent"
+        android:fontFamily="@font/font_main"
+        android:padding="16dp"
+        android:textSize="22sp"
+        android:text="To control the character you have to flip the phone to the left or right.\n\nDepending on your speed you will fire fireballs faster."/>
+</RelativeLayout>

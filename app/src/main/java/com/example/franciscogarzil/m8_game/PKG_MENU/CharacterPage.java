@@ -54,7 +54,15 @@ public class CharacterPage extends AppCompatActivity {
         // Buttons
         Button _newGame = findViewById(R.id.btnNewGame);
         Button _library = findViewById(R.id.btnLibrary);
+        Button _howTo = findViewById(R.id.btnhow);
         // On Click Listeners:
+        _howTo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(CharacterPage.this, howToPlay.class);
+                CharacterPage.this.startActivity(myIntent);
+            }
+        });
         _newGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

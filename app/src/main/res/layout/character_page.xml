@@ -25,13 +25,21 @@
         android:textColor="@color/colorAccent"
         android:textSize="36sp" />
 
-    <ImageView
-        android:layout_below="@+id/welcome_msg"
-        android:id="@+id/character_img"
-        android:layout_marginTop="48dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/contentDescCharacterImg" />
+
+    <Button
+        android:id="@+id/btnhow"
+        android:layout_centerInParent="true"
+        android:layout_width="170dp"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/button"
+        android:text="HOW TO PLAY"
+        android:textStyle="italic"
+        android:fontFamily="@font/font_main"
+        android:textColor="@color/colorAccent"
+        android:layout_marginRight="16dp"
+        android:textSize="22sp"
+        android:layout_marginEnd="16dp" />
 
     <LinearLayout
         android:layout_alignParentBottom="true"

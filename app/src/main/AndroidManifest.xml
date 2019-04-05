@@ -11,7 +11,8 @@
         android:roundIcon="@drawable/logo_wolf"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PKG_MENU.NewCharacter"></activity>
+        <activity android:name=".PKG_MENU.howToPlay"></activity>
+        <activity android:name=".PKG_MENU.NewCharacter" />
         <activity android:name=".PKG_MENU.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
